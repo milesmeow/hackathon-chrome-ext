@@ -2,14 +2,18 @@
  var today = new Date();
  var hour = today.getHours();
  var minute = today.getMinutes();
+ var imgOpacity = 0.5;
+
  if ( hour === hour){
 
 
 
-    SPEED = 500;//ms between each call
+    SPEED = 250;//ms between each call
     // setTimeout(this.move.bind(this), this.SPEED);
 
     setInterval(move,SPEED);
+    // setInterval(blink, 500); // to blink the images
+    setTimeout(blink, 500); 
 
     var pacManDirection = 'right';
     var images = document.getElementsByTagName('img');
@@ -22,8 +26,13 @@
     words.innerHTML = "....LUNCH TIME.... " + " at " + hour + ":" + minute;
 
     for (let i=0; i<images.length; i++){
+        
         //var parent = images[i].parentElement;
-        images[i].parentNode.removeChild(images[i]);
+        
+        
+        //images[i].parentNode.removeChild(images[i]);
+        images[i].className = 'pacman-food';
+
         //parent.appendChild(img);
     }
 
@@ -36,7 +45,7 @@
 
     function move() {
         let position = img.position();
-        console.log(($('#banner')).position());
+        //console.log(($('#banner')).position());
         if (pacManDirection === 'right') position.left += 50;
         if (pacManDirection === 'left') position.left -= 50;
         if (pacManDirection === 'up') position.top -= 50;
@@ -58,12 +67,29 @@
         else{
             img.css({top: position.top});
         }
-        var element = document.elementFromPoint(img.css.left, img.css.top);
-        console.log("this is an element", element);
-        console.log("this is a position check on img.css.left", img.css.left);
+        // var element = document.elementFromPoint(img.css.left, img.css.top);
+        // console.log("this is an element", element);
+        // console.log("this is a position check on img.css.left", img.css.left);
 
 
+    }
 
+    function blink() {
+        if (images) {
+            if ( imgOpacity === 0.5 ) {
+                imgOpacity = 1.0;
+             } else { 
+                 imgOpacity = 0.5;
+             }   
+            //loop through 
+                for (let i=0; i<images.length; i++){
+                    if ( images[i].id !== 'pacman'){
+                        if ( images[i].style.top !== undefined ){
+                            images[i].style.opacity = imgOpacity;
+                        }
+                    }
+                }
+        }
     }
 
 

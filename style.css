@@ -20,4 +20,8 @@
     border: 2px solid slateblue
 }
 
+.pacman-food {
+    border: 2px solid hotpink;
+   /* opacity: 0.5; */
+}
 
