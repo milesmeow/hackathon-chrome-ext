@@ -7,6 +7,16 @@
     z-index:2000;
 }
 
+.trail {
+    position: absolute;
+    /* top: 100px;
+    left:0px; */
+    width:70px;
+    height:70px;
+    background-color: black;
+    z-index:1999;
+}
+
 #banner{
     position:absolute;
     top:100px;
@@ -24,4 +34,6 @@
     border: 2px solid hotpink;
    /* opacity: 0.5; */
 }
+
+
 

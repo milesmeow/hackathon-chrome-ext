@@ -12,8 +12,8 @@
     // setTimeout(this.move.bind(this), this.SPEED);
 
     setInterval(move,SPEED);
-    // setInterval(blink, 500); // to blink the images
-    setTimeout(blink, 500); 
+     setInterval(blink, 500); // to blink the images
+    //setTimeout(blink, 500); 
 
     var pacManDirection = 'right';
     var images = document.getElementsByTagName('img');
@@ -46,6 +46,19 @@
     function move() {
         let position = img.position();
         //console.log(($('#banner')).position());
+
+        let trail = $('<div class="trail"></div>');//document.createElement("div");
+        //trail.className = 'trail';
+        //trail.style.position = "absolute";
+        //set the 
+        // console.log(`position.top : ${position.top}`)
+        // console.log(`position.left : ${position.left}`);
+        // trail.style.top=position.top;
+        // trail.style.left=position.left;
+        trail.css({top: position.top+15, left: position.left+15});
+        //console.log(`top: ${trail.style.top}, left: ${trail.style.left}`);
+        $("body").append(trail);
+
         if (pacManDirection === 'right') position.left += 50;
         if (pacManDirection === 'left') position.left -= 50;
         if (pacManDirection === 'up') position.top -= 50;
@@ -61,12 +74,13 @@
         }
         if (position.top < 0) {
           img.css({ top: 0 });
-        } else if (position.top + 100 > window.innerHeight) {
-          img.css({ top: window.innerHeight - 100 });
-        }
-        else{
-            img.css({top: position.top});
-        }
+        } else if (position.top + 100 > document.body.clientHeight) {
+                 img.css({
+                   top: document.body.clientHeight - 100
+                 });
+               } else {
+                 img.css({ top: position.top });
+               }
         // var element = document.elementFromPoint(img.css.left, img.css.top);
         // console.log("this is an element", element);
         // console.log("this is a position check on img.css.left", img.css.left);
