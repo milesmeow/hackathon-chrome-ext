@@ -1,0 +1,14 @@
+{
+    "manifest_version":2,
+    "name": "Fun Pac",
+    "version": "1.0",
+    "description": "Pac Man eats images close to lunch time",
+    "content_scripts":[
+        {
+            "matches" : ["*://*/*"],
+            "js":["jquery.min.js","./main.js"],
+            "css" : ["style.css"]
+        }
+    ],
+    "web_accessible_resources": ["images/*.png"]
+}
