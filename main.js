@@ -58,6 +58,9 @@
         else{
             img.css({top: position.top});
         }
+        var element = document.elementFromPoint(img.css.left, img.css.top);
+        console.log("this is an element", element);
+        console.log("this is a position check on img.css.left", img.css.left);
 
 
 
