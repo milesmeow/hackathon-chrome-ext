@@ -4,6 +4,17 @@
  var minute = today.getMinutes();
  var imgOpacity = 0.5;
 
+
+        var form = $('<form method="get" id="searchform" action="http://www.google.com/search"></form>');
+        var searchBox = $('<input id="searchHere" type="text" name="q" placeholder=" anything and press Enter">');
+        //var btn = $('<input id="submit-btn" type="submit" value="search">')
+        $("body").append(form);
+        form.append(searchBox);
+        //form.append(btn);
+
+        
+        document.getElementById("searchHere").addEventListener("keydown", doKeyPress, false);
+
  if ( hour === hour){
 
 
@@ -21,9 +32,9 @@
     // var today = new Date();
     // var hour = today.getHours();
     words.setAttribute("id", "banner");
-    words.setAttribute("behavior","slide");
+    words.setAttribute("behavior","scroll");
     words.setAttribute("direction","left");
-    words.innerHTML = "....LUNCH TIME.... " + " at " + hour + ":" + minute;
+    words.innerHTML = "IT IS NOW " + hour + ":" + minute + ", IT'S YOUR LUNCH TIME & PACMAN'S LUNCH TIME";
 
     for (let i=0; i<images.length; i++){
         
@@ -40,6 +51,7 @@
         img.attr("src", "https://upload.wikimedia.org/wikipedia/commons/4/49/Pacman.svg");
         $('body').append(img);
         $('body').append(words);
+
     // 
     // console.log(images);
 
@@ -72,8 +84,8 @@
         }else{
             img.css({left: position.left});
         }
-        if (position.top < 0) {
-          img.css({ top: 0 });
+        if (position.top < 100) {
+          img.css({ top: 100 });
         } else if (position.top + 100 > document.body.clientHeight) {
                  img.css({
                    top: document.body.clientHeight - 100
