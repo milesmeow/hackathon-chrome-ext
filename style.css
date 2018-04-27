@@ -32,6 +32,7 @@
 
 .pacman-food {
     border: 2px solid hotpink;
+    box-sizing: border-box;
    /* opacity: 0.5; */
 }
 #searchform{

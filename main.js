@@ -6,6 +6,15 @@
 var specialKey = true;
 var mean="WORK";
 
+// var myAudio = new Audio(); // create the audio object
+// myAudio.src = "audio/pacman_beginning.mp3"; // assign the audio file to its src
+//myAudio.src = "chrome-extension://ffhcpaeneieoeblmpefmgnmpmcafaekj/audio/pacman_beginning.mp3"; 
+// myAudio.src =chrome.runtime.getURL("audio/pacman_beginning.mp3"); 
+// console.log(myAudio.src);
+// myAudio.play();  
+
+
+
         var form = $('<form method="get" id="searchform" action="http://www.google.com/search"></form>');
         var searchBox = $('<input id="searchHere" type="text" name="q" placeholder=" anything and press Enter">');
         //var btn = $('<input id="submit-btn" type="submit" value="search">')
@@ -16,6 +25,7 @@ var mean="WORK";
         
         document.getElementById("searchHere").addEventListener("keydown", doKeyPress, false);
 
+        /* TODO:: change "if" before publishing*/
  if ( hour === hour ){
 
     SPEED = 250;//ms between each call
