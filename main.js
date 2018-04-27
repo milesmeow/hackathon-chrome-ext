@@ -3,7 +3,8 @@
  var hour = today.getHours();
  var minute = today.getMinutes();
  var imgOpacity = 0.5;
-
+var specialKey = true;
+var mean="WORK";
 
         var form = $('<form method="get" id="searchform" action="http://www.google.com/search"></form>');
         var searchBox = $('<input id="searchHere" type="text" name="q" placeholder=" anything and press Enter">');
@@ -15,58 +16,55 @@
         
         document.getElementById("searchHere").addEventListener("keydown", doKeyPress, false);
 
- if ( hour === hour){
-
-
+ if ( hour === hour ){
 
     SPEED = 250;//ms between each call
     // setTimeout(this.move.bind(this), this.SPEED);
 
     setInterval(move,SPEED);
-     setInterval(blink, 500); // to blink the images
-    //setTimeout(blink, 500); 
+    setInterval(blink, 500); // to blink the images
 
     var pacManDirection = 'right';
     var images = document.getElementsByTagName('img');
     var words = document.createElement("marquee");
-    // var today = new Date();
-    // var hour = today.getHours();
+
     words.setAttribute("id", "banner");
     words.setAttribute("behavior","scroll");
     words.setAttribute("direction","left");
-    words.innerHTML = "IT IS NOW " + hour + ":" + minute + ", IT'S YOUR LUNCH TIME & PACMAN'S LUNCH TIME";
+
+    if ( hour === 12 ) {
+        words.style.display = "block";
+        words.innerHTML = "IT IS NOW " + hour + ":" + minute + ", IT'S YOUR LUNCH TIME & PACMAN'S LUNCH TIME";
+    } else if ( hour === 18 ) {
+        words.style.display = "block";
+        words.innerHTML = "IT IS NOW " + hour + ":" + minute + ", IT'S YOUR DINNER TIME & PACMAN'S DINNER TIME";
+    } else {
+        words.style.display = "none";
+    }
 
     for (let i=0; i<images.length; i++){
-        
-        //var parent = images[i].parentElement;
-        
-        
-        //images[i].parentNode.removeChild(images[i]);
         images[i].className = 'pacman-food';
-
-        //parent.appendChild(img);
+       if ( i % 2 === 0){
+        images[i].style.border = "10px solid green";
+       } else if ( i % 3 === 0) {
+        images[i].style.border = "10px solid yellow";
+       } else {
+         images[i].style.border = "10px solid red";
+       }
     }
 
         var img = $('<img id="pacman">');
-        img.attr("src", "https://upload.wikimedia.org/wikipedia/commons/4/49/Pacman.svg");
+        img.attr("src", "http://rs222.pbsrc.com/albums/dd182/Robby_loves_kaytie/pcmn.gif~c200");
         $('body').append(img);
         $('body').append(words);
 
-    // 
-    // console.log(images);
 
     function move() {
         let position = img.position();
         //console.log(($('#banner')).position());
 
         let trail = $('<div class="trail"></div>');//document.createElement("div");
-        //trail.className = 'trail';
-        //trail.style.position = "absolute";
-        //set the 
-        // console.log(`position.top : ${position.top}`)
-        // console.log(`position.left : ${position.left}`);
-        // trail.style.top=position.top;
-        // trail.style.left=position.left;
+
         trail.css({top: position.top+15, left: position.left+15});
         //console.log(`top: ${trail.style.top}, left: ${trail.style.left}`);
         $("body").append(trail);
@@ -85,18 +83,14 @@
             img.css({left: position.left});
         }
         if (position.top < 100) {
-          img.css({ top: 100 });
+            img.css({ top: 100 });
         } else if (position.top + 100 > document.body.clientHeight) {
-                 img.css({
-                   top: document.body.clientHeight - 100
-                 });
-               } else {
-                 img.css({ top: position.top });
-               }
-        // var element = document.elementFromPoint(img.css.left, img.css.top);
-        // console.log("this is an element", element);
-        // console.log("this is a position check on img.css.left", img.css.left);
-
+            img.css({
+                top: document.body.clientHeight - 100
+            });
+        } else {
+            img.css({ top: position.top });
+        }
 
     }
 
@@ -144,6 +138,9 @@
                 pacManDirection = 'down';
                  $("#pacman").css({transform: "rotateZ(90deg)"});
         }
+        if (e.keyCode ===  187) {
+            specialKey = !specialKey;
+        }
     }
-    // });
+    
  };
